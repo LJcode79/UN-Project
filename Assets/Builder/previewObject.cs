@@ -34,6 +34,13 @@ public class previewObject : MonoBehaviour
             {
                 child.GetComponent<Renderer>().material = green;
             }
+        else
+        {
+            foreach (Transform child in this.transform)
+            {
+                child.GetComponent<Renderer>().material = red;
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -45,6 +52,6 @@ public class previewObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        changecolor();
     }
 }

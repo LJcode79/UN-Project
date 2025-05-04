@@ -32,14 +32,19 @@ public class BuildingSystem : MonoBehaviour
             startPreview();
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetButtonDown("Fire1"))
         {
-            isBuilding = !isBuilding;
-            if (isBuilding && currentobject != null)
-            {
-                ChangeCurrentBuilding(); // Instantiate preview when building starts
-            }
+            Build();
         }
+
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    isBuilding = !isBuilding;
+        //    if (isBuilding && currentobject != null)
+        //    {
+        //        ChangeCurrentBuilding(); // Instantiate preview when building starts
+        //    }
+        //}
     }
 
     public void ChangeCurrentBuilding()
@@ -67,12 +72,22 @@ public class BuildingSystem : MonoBehaviour
         currentpos += Vector3.one * offset;
         currentPreview.position = currentpos;
     }
+
+    public void Build()
+    {
+        previewObject PO = currentPreview.GetComponent<previewObject>();
+        if(PO.isBuildable)
+        {
+            Instantiate(currentobject.prefab, currentpos, Quaternion.identity);
+        }
+    }
 }
 
 [System.Serializable]
 public class buildObjects
 {
     public string name;
+    public GameObject prefab;
     public GameObject preview;
     public int gold;
 }
